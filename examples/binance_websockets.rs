@@ -3,21 +3,24 @@
 use binance::api::*;
 use binance::userstream::*;
 use binance::websockets::*;
+use binance::config::*;
 use std::sync::atomic::{AtomicBool, Ordering};
 
 fn main() {
-    //user_stream();
+    user_stream();
     //user_stream_websocket();
     //market_websocket();
     //kline_websocket();
     //all_trades_websocket();
     //last_price_for_one_symbol();
-    multiple_streams();
+    //multiple_streams();
 }
 
 fn user_stream() {
-    let api_key_user = Some("YOUR_API_KEY".into());
-    let user_stream: UserStream = Binance::new(api_key_user, None);
+    let api_key: &str = "";
+    let api_key_user = Some(api_key.into());
+    let config = Config::testnet();
+    let user_stream: UserStream = Binance::new_with_config(api_key_user, None, &config);
 
     if let Ok(answer) = user_stream.start() {
         println!("Data Stream Started ...");

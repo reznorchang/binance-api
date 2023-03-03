@@ -75,7 +75,7 @@ enum Events {
 impl<'a> WebSockets<'a> {
     pub fn new<Callback>(handler: Callback) -> WebSockets<'a>
     where
-        Callback: FnMut(WebsocketEvent) -> Result<()> + 'a,
+        Callback: FnMut(WebsocketEvent) -> Result<()> + 'a, //can't see why is this
     {
         WebSockets {
             socket: None,
